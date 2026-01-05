@@ -53,6 +53,13 @@
 			"style": {
 				"navigationBarTitleText": "预约"
 			}
+		},
+		{
+			"path" : "pages/booking-list/booking-list",
+			"style" : 
+			{
+				"navigationBarTitleText" : "预约记录"
+			}
 		}
 	],
 	"globalStyle": {
@@ -62,6 +69,7 @@
 		"backgroundColor": "#F5F5F5"
 	},
 	"tabBar": {
+		"custom": true,
 		"color": "#7f8c8d",
 		"selectedColor": "#3498db",
 		"borderStyle": "white",

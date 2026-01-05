@@ -1,9 +1,12 @@
 <template>
+	<view class="allcontainer">
 	<view class="container">
 		<!-- 搜索框 -->
+		<view class="search-section">
 		<view class="search-box">
-			<input class="search-input" placeholder="请输入目的地" v-model="destination" />
+			<input class="search-input" placeholder-class="ph" placeholder="请输入目的地" v-model="destination" />
 			<button class="search-btn" @click="searchRoute">搜索</button>
+		</view>
 		</view>
 
 		<!-- 地图容器 -->
@@ -26,6 +29,7 @@
 		<!-- #ifdef H5 -->
 		<custom-tabbar></custom-tabbar>
 		<!-- #endif -->
+	</view>
 	</view>
 </template>
 
@@ -199,29 +203,50 @@
 </script>
 
 <style scoped>
+	.allcontainer{
+			height: 100%;
+			width: 100%;
+			background-size: 100% 100%;
+			background-image: url('/static/ocean.jpg');   /* 路径换成你的 */
+		}
 	.container {
+		max-width: 700px;
+		margin: 0 auto;
 		min-height: 100vh;
 		background: #f5f5f5;
-		padding: 40rpx;
 		display: flex;
 		flex-direction: column;
 		/* #ifdef H5 */
 		padding-bottom: calc(40rpx + 120rpx);
 		/* #endif */
 	}
-
+	/* 搜索区域 */
+	.search-section {
+	  background: linear-gradient(135deg, #54e8ea 0%, #764ba2 100%);
+	  padding: 30rpx 40rpx 40rpx;
+	  position: sticky;
+	  top: 0;
+	  z-index: 100;
+	  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
+	}
 	.search-box {
 		display: flex;
-		margin-bottom: 20rpx;
+	}
+	/* 统一写在 xxx.vue 的 style 里 */
+	.ph {
+	  color: #bee3ff !important;
+	  font-size: 28rpx;
+	  font-weight: bold;
 	}
 
 	.search-input {
 		flex: 1;
 		height: 80rpx;
-		padding: 0 20rpx;
+		padding: 0rpx 20rpx;
 		border: 1px solid #ddd;
 		border-radius: 40rpx 0 0 40rpx;
-		font-size: 28rpx;
+		font-size: 38rpx;
+		font-weight: bolder;
 	}
 
 	.search-btn {

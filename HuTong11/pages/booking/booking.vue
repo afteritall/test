@@ -112,42 +112,39 @@
 			onDurationChange(e) {
 				this.durationIndex = e.detail.value
 			},
-			submitBooking() {
-				if (!this.date || !this.time) {
-					uni.showToast({
-						title: '请选择日期和时间',
-						icon: 'none'
-					})
-					return
-				}
-
-				// 组装新预约数据
-				const newBooking = {
-					id: Date.now(), // 用时间戳做唯一 ID
-					parkName: this.parking.name,
-					date: this.date,
-					time: this.time,
-					duration: this.durationOptions[this.durationIndex],
-					status: 'pending',
-					statusText: '已预约',
-					actionText: '取消预约'
-				}
-
-				// 从本地读取已有预约列表
-				let bookings = uni.getStorageSync('bookingList') || []
-				bookings.push(newBooking)
-
-				// 保存到本地
-				uni.setStorageSync('bookingList', bookings)
-
-				uni.showToast({
-					title: '预约成功',
-					icon: 'success'
-				})
-				setTimeout(() => {
-					uni.navigateBack()
-				}, 1500)
-			}
+			formatDateTime(dateStr, timeStr) {
+			    const [h, m] = timeStr.split(':').map(Number);
+			    const period = h < 12 ? '上午' : '下午';
+			    const twelve = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+			    const sec = new Date().getSeconds();
+			
+			    const [y, M, d] = dateStr.split('-');
+			    return `${y}/${Number(M)}/${Number(d)} ${period}${twelve}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+			},
+			
+			    submitBooking() {
+			        if (!this.date || !this.time) {
+			            uni.showToast({ title: '请选择日期和时间', icon: 'none' });
+			            return;
+			        }
+			        const dateTime = this.formatDateTime(this.date, this.time); // ← 用这里
+			
+			        const newBooking = {
+			            id: Date.now(),
+			            type: 'parking',
+			            shopName: this.parking.name,
+			            date: dateTime,              // 2026/1/6 上午10:58:19
+			            duration: this.durationOptions[this.durationIndex],
+			            isCancel: false
+			        };
+			
+			        let bookings = uni.getStorageSync('BOOKINGS') || [];
+			        bookings.unshift(newBooking);
+			        uni.setStorageSync('BOOKINGS', bookings);
+			
+			        uni.showToast({ title: '预约成功', icon: 'success' });
+			        setTimeout(() => uni.navigateBack(), 1500);
+			    }
 		}
 	}
 </script>

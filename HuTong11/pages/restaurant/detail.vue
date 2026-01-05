@@ -219,7 +219,79 @@ export default {
           price: '人均 20-40 元',
           recommend: '莜面鱼鱼、玉米面煎饼、杂粮豆浆、粗粮小菜',
           hours: '07:00 - 20:00'
-        }
+        },
+		'野馄饨·夜酒': {
+		  name: '野馄饨·夜酒',
+		  images: ['https://images.unsplash.com/photo-1528732263441-1482b1f1a845?w=800','https://images.unsplash.com/photo-1504674900247-0877df9cc83a?w=800'],
+		  intro: '晚上 8 点才开门的“深夜食堂”，鸡汤馄饨+自酿米酒，胡同口的小黄灯亮了 15 年。地点位于东城区北锣鼓巷 57 号',
+		  features: '只做夜宵档，鸡汤每天现熬 6 小时，米酒加桂花，喝完微醺刚好沿着胡同走回家。',
+		  price: '人均 18-35 元',
+		  recommend: '鸡汤馄饨、自酿桂花米酒、凉拌海带丝',
+		  hours: '20:00 - 次日02:00'
+		},
+		'柿子树法甜': {
+		  name: '柿子树法甜',
+		  images: ['https://images.unsplash.com/photo-1511381939415-e44015466834?w=800','https://images.unsplash.com/photo-1488477183586-2b95203d7aa1?w=800'],
+		  intro: '老四合院里吃法式甜品，主厨师从 Pierre Hermé，柿子蒙布朗是秋季限定。地点位于东城区香饵胡同 92 号',
+		  features: '院子中央有棵百年柿子树，秋天掉果子直接做甜品；全开放式厨房，可围观抹胚过程。',
+		  price: '人均 68-120 元',
+		  recommend: '柿子蒙布朗、柚子拿破仑、手工覆盆子软糖',
+		  hours: '11:00 - 19:00'
+		},
+		'巷尾咖喱': {
+		  name: '巷尾咖喱',
+		  images: ['https://images.unsplash.com/photo-1585937421612-70a05835626b?w=800','https://images.unsplash.com/photo-1585937421612-70a05835626b?w=800'],
+		  intro: '日本人开的微辣咖喱专门店，每日只卖 80 份，加料芝士要抢。地点位于东城区北下洼子胡同 18 号',
+		  features: '老板是东京归国大叔，咖喱用 8 种香料小火炒 3 小时，辣度只有微辣/中辣两档，不辣不爽。',
+		  price: '人均 42-68 元',
+		  recommend: '招牌鸡排咖喱、双层芝士咖喱、自制酸梅汤',
+		  hours: '11:30 - 14:30, 17:30 - 卖完即止'
+		},
+		'糖渍山楂': {
+		  name: '糖渍山楂',
+		  images: ['https://images.unsplash.com/photo-1599599810694-b5b37307298b?w=800','https://images.unsplash.com/photo-1555949253-e4e94a5e4515?w=800'],
+		  intro: '老北京炒红果+创意冰粉，山楂每天手工去核，酸甜解腻。地点位于东城区国子监街 25 号',
+		  features: '山楂选自兴隆产区，当天去核当天炒，冰粉手搓气泡，0 香精 0 色素，孕妇也能吃。',
+		  price: '人均 12-22 元',
+		  recommend: '招牌炒红果、玫瑰冰粉、山楂气泡饮',
+		  hours: '10:00 - 20:00'
+		},
+		'Planet 轻食星球': {
+		  name: 'Planet 轻食星球',
+		  images: ['https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800','https://images.unsplash.com/photo-1490645935967-10de6ba17071?w=800'],
+		  intro: '健身党福音：每道菜标卡路里，藜麦饭+低温鸡胸，酱热量也写出来。地点位于东城区雍和宫大街 58 号',
+		  features: '与 Keep 官方合作，菜品热量精确到 1kcal；扫码可看健身视频，吃完直接开练。',
+		  price: '人均 38-65 元',
+		  recommend: '香煎鸡胸藜麦饭、0 糖拿铁、低脂凯撒沙拉',
+		  hours: '08:00 - 20:00'
+		},
+		'串府·小腰精': {
+		  name: '串府·小腰精',
+		  images: ['https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800','https://images.unsplash.com/photo-1529025639995-92bda6b37b52?w=800'],
+		  intro: '主打“小腰子”烤串，羊腰提前用牛奶泡，不腥不腻，夜宵王。地点位于东城区交道口南大街 66 号',
+		  features: '羊腰用冰牛奶泡 12 小时去腥，果木炭烤，外脆内嫩；蘸干料用 12 味中药配，补肾不燥。',
+		  price: '人均 3-10 元/串',
+		  recommend: '小腰子、牛肋条、烤烧饼、北冰洋',
+		  hours: '19:00 - 次日01:00'
+		},
+		'妈妈手馍馍': {
+		  name: '妈妈手馍馍',
+		  images: ['https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800','https://images.unsplash.com/photo-1603048719169-5c5b0e1b5c4d?w=800'],
+		  intro: '陕西人开的纯手工馍馍店，现烙白吉馍+腊汁肉，10 元一套管饱。地点位于东城区安定门内大街 112 号',
+		  features: '面用关中冬小麦，现烙 7 分钟，外壳焦脆；腊汁肉文火炖 4 小时，肥而不腻，可续肉汤。',
+		  price: '人均 10-25 元',
+		  recommend: '腊汁肉夹馍、油泼面、冰峰、紫菜蛋花汤',
+		  hours: '07:00 - 21:00'
+		},
+		'茶泡同学': {
+		  name: '茶泡同学',
+		  images: ['https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800','https://images.unsplash.com/photo-1556909114-f6e7ad7d9d10?w=800'],
+		  intro: '把“茶+奶盖”做成实验课，自己倒氮气茶，看云雾翻涌，中二又出片。地点位于东城区五道营胡同 101 号',
+		  features: '桌边小实验：液氮-196℃ 瞬间锁香，奶盖像瀑布；提供白大褂和护目镜，拍照自带赛博朋克滤镜。',
+		  price: '人均 22-40 元',
+		  recommend: '氮气金骏眉、芝士瀑布、实验员拍照套餐',
+		  hours: '10:00 - 21:00'
+		}
       }
     }
   },
@@ -257,13 +329,20 @@ export default {
         this.hidePop()
         return
       }
-      arr.unshift({
-        id: Date.now(),
-        shopName: this.restaurantDetail.name,
-        mobile: this.mobile,
-        date: new Date().toLocaleString('zh-CN'),
-        isCancel: false
-      })
+      const dateTime = new Date().toLocaleString('zh-CN', {
+          year: 'numeric', month: 'numeric', day: 'numeric',
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+          hour12: true
+        }).replace(/年|月/g, '/').replace(/日/, ''); // 2026/1/5 上午10:58:19
+      
+        arr.unshift({
+          id: Date.now(),
+          type: 'restaurant',                // ① 类型
+          shopName: this.restaurantDetail.name, // ② 统一字段
+          date: dateTime,                    // ③ 带时间
+          mobile: this.mobile,
+          isCancel: false
+        });
       uni.setStorageSync('BOOKINGS', arr)
       this.booked = true
       this.hidePop()

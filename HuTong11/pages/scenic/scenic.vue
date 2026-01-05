@@ -1,4 +1,5 @@
 <template>
+<view class="allcontainer">
   <view class="container">
     <!-- 搜索框 -->
     <view class="search-section">
@@ -60,6 +61,7 @@
     <custom-tabbar></custom-tabbar>
     <!-- #endif -->
   </view>
+</view>
 </template>
 
 <script>
@@ -114,8 +116,48 @@ export default {
           name: '胡同二楼取景处',
           intro: '适合拍照打卡，风景优美，俯瞰整个北京城。',
           parking: '永康胡同18号院'
-        }
-      ],
+        },
+            {
+              name: 'Rainbow 彩虹楼梯',
+              intro: '胡同里藏着的 7 色渐变楼梯，从上往下拍腿长 2 米，晴天 10:00-14:00 光影最绝。',
+              parking: '北锣鼓巷 45 号旁（地铁北锣 A 口步行 3 分钟）'
+            },
+            {
+              name: '银河汽水实验室',
+              intro: '自制“星系气泡水”，把 edible glitter 灌进汽水里，关灯瞬间星河爆炸，超治愈。',
+              parking: '交道口南大街 88 号'
+            },
+            {
+              name: '时光打字机咖啡馆',
+              intro: '店里摆着 20 台 1930s 打字机，可敲一张“旧时代情书”当明信片，文艺值 +100。',
+              parking: '方家胡同 12 号'
+            },
+            {
+              name: '月亮邮筒',
+              intro: '巨型银色月牙形邮筒，夜里内置灯自动亮起，把明信片投进去 7 天后会收到“来自月亮的回信”。',
+              parking: '国子监街 40 号门口'
+            },
+            {
+              name: '像素胡同',
+              intro: '整条巷子地面贴满 8-bit 马赛克，踩在上面像跳“马里奥”，无人机俯拍效果炸裂。',
+              parking: '柴棒胡同 3-9 号'
+            },
+            {
+              name: '风铃长廊',
+              intro: '百米长廊挂 3000+ 只手工风铃，四季风向不同铃声也不同，闭眼拍 vlog 自带 BGM。',
+              parking: '鼓楼东大街 190 号后院'
+            },
+            {
+              name: '云朵制造机',
+              intro: '门口机器 30 秒生成“可食用云朵”棉花糖，拍照完一口吃掉，零卡代糖不怕胖。',
+              parking: '南锣鼓巷 128 号'
+            },
+            {
+              name: '镜面对称屋',
+              intro: '屋内 360° 镜面+对称灯光，站在中间仿佛掉进盗梦空间，手机广角一键出科幻大片。',
+              parking: '菊儿胡同 73 号地下一层'
+            }
+          ],
       bookedSet: new Set()
     }
   },
@@ -156,7 +198,15 @@ export default {
 </script>
 
 <style scoped>
+	.allcontainer{
+			height: 100%;
+			width: 100%;
+			background-size: 100% 100%;
+			background-image: url('/static/ocean.jpg');   /* 路径换成你的 */
+		}
 .container {
+	max-width: 700px;
+	margin: 0 auto;
   min-height: 100vh;
   background: #f5f5f5;
   /* #ifdef H5 */
@@ -167,14 +217,13 @@ export default {
   /* #endif */
 }
 
-/* 搜索区域 */
 .search-section {
-  background: #ffffff;
-  padding: 30rpx 40rpx;
+  background: linear-gradient(135deg, #54e8ea 0%, #764ba2 100%);
+  padding: 30rpx 40rpx 40rpx;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
 }
 .search-box {
   display: flex;

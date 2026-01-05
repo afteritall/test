@@ -1,4 +1,5 @@
 <template>
+	<view class="allcontainer">
 	<view class="container">
 		<!-- 顶部轮播图 -->
 		<swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
@@ -37,6 +38,7 @@
 		<!-- #ifdef H5 -->
 		<custom-tabbar></custom-tabbar>
 		<!-- #endif -->
+	</view>
 	</view>
 </template>
 
@@ -84,13 +86,22 @@
 </script>
 
 <style scoped>
+	.allcontainer{
+			height: 100%;
+			width: 100%;
+			background-size: 100% 100%;
+			background-image: url('/static/ocean.jpg');   /* 路径换成你的 */
+		}
 	.container {
+		max-width: 700px;
+		margin: 0 auto;
 		min-height: 100vh;
 		background: #f5f5f5;
 		padding-bottom: 40rpx;
 		/* #ifdef H5 */
 		padding-bottom: calc(40rpx + 120rpx);
 		/* #endif */
+		
 	}
 
 	/* 轮播图样式 */

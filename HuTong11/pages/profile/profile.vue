@@ -1,308 +1,195 @@
 <template>
-	<view class="container">
-		<view class="content">
-			<!-- 顶部用户信息 -->
-			<view class="user-info">
-				<image class="avatar" src="/static/avatar.png" mode="aspectFill"></image>
-				<view class="user-details">
-					<text class="nickname">张三</text>
-					<text class="phone">138****6789</text>
-				</view>
-				<view class="vip-tag">VIP会员</view>
-			</view>
+<view class="allcontainer">
+  <view class="page">
+    <!-- 顶部渐变卡片 -->
+    <view class="top-card">
+      <view class="tc-tit">今日预约</view>
+      <view class="tc-num">{{ todayTotal }}</view>
+      <view class="tc-txt">停车 · 景点 · 餐馆</view>
+    </view>
 
-			<!-- 个人信息卡片 -->
-			<view class="info-card">
-				<view class="info-item">
-					<text class="label">会员等级</text>
-					<text class="value">黄金会员</text>
-				</view>
-				<view class="info-item">
-					<text class="label">积分</text>
-					<text class="value">1200</text>
-				</view>
-				<view class="info-item">
-					<text class="label">优惠券</text>
-					<text class="value">3张</text>
-				</view>
-			</view>
+    <!-- 三大功能入口 -->
+    <view class="grid">
+      <view class="item" @click="goList('parking')">
+        <view class="item-icon 🅿️"></view>
+        <view class="item-name">停车预约</view>
+        <view v-if="count.parking>0" class="item-badge">{{count.parking}}</view>
+      </view>
 
-			<!-- 预约信息标题 -->
-			<view class="section-title">我的停车场预约</view>
+      <view class="item" @click="goList('scenic')">
+        <view class="item-icon 🏞️"></view>
+        <view class="item-name">景点预约</view>
+        <view v-if="count.scenic>0" class="item-badge">{{count.scenic}}</view>
+      </view>
 
-			<!-- 预约列表 -->
-			<view class="booking-list">
-				<view class="booking-item" v-for="(item, index) in bookingList" :key="index">
-					<view class="booking-left">
-						<text class="park-name">{{ item.parkName }}</text>
-						<text class="booking-time">{{ item.date }} {{ item.time }}</text>
-						<text class="duration">时长：{{ item.duration }}</text>
-					</view>
-					<view class="booking-right">
-						<view class="status-tag" :class="item.status">{{ item.statusText }}</view>
-						<button class="action-btn" @click="handleAction(item)">{{ item.actionText }}</button>
-					</view>
-				</view>
-			</view>
+      <view class="item" @click="goList('restaurant')">
+        <view class="item-icon 🍽️"></view>
+        <view class="item-name">餐馆预约</view>
+        <view v-if="count.restaurant>0" class="item-badge">{{count.restaurant}}</view>
+      </view>
+    </view>
 
-			<!-- 其他功能入口 -->
-			<view class="function-list">
-				<view class="function-item" @click="navToFavorites">
-					<image class="func-icon" src="/static/icon-favorites.png"></image>
-					<text class="func-text">我的收藏</text>
-				</view>
-				<view class="function-item" @click="navToReviews">
-					<image class="func-icon" src="/static/icon-reviews.png"></image>
-					<text class="func-text">我的评价</text>
-				</view>
-				<view class="function-item" @click="navToSettings">
-					<image class="func-icon" src="/static/icon-settings.png"></image>
-					<text class="func-text">设置</text>
-				</view>
-			</view>
-		</view>
+    <!-- 最近预约记录 -->
+    <view class="recent-bar">
+      <text class="recent-tit">最近预约</text>
+      <view class="bar-right">
+        <text class="plan-btn" @click="planRoute">一键规划路线</text>
+        <text v-if="recentList.length" class="clear" @click="clearAll">清空</text>
+      </view>
+    </view>
 
-		<!-- H5端自定义Tabbar -->
-		<!-- #ifdef H5 -->
-		<custom-tabbar></custom-tabbar>
-		<!-- #endif -->
-	</view>
+    <view v-if="recentList.length" class="recent-list">
+      <view v-for="item in recentList" :key="item.id" class="recent-item">
+        <view class="ri-left">
+          <view class="ri-name">{{item.shopName}}</view>
+          <view class="ri-time">{{item.date}}</view>
+        </view>
+        <view class="ri-right">
+          <text v-if="!item.isCancel" class="ri-status ok">已预约</text>
+          <text v-else class="ri-status cancel">已取消</text>
+          <text v-if="!item.isCancel" class="ri-cancel" @click="cancelOne(item)">取消</text>
+        </view>
+      </view>
+    </view>
+
+    <view v-else class="empty">
+      <text class="empty-txt">暂无预约记录</text>
+    </view>
+
+    <!-- H5 自定义 Tabbar -->
+    <!-- #ifdef H5 -->
+    <custom-tabbar></custom-tabbar>
+    <!-- #endif -->
+  </view>
+</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				// 新的已预约停车场数据
-				bookingList: []
-			}
-		},
-		onLoad() {
-			// 从本地读取预约列表
-			this.bookingList = uni.getStorageSync('bookingList') || []
-		},
-		methods: {
-			handleAction(item) {
-				if (item.actionText === '取消预约') {
-					uni.showModal({
-						title: '提示',
-						content: '确定要取消该预约吗？',
-						success: (res) => {
-							if (res.confirm) {
-								// 1. 从本地存储中删除该条记录
-								let bookings = uni.getStorageSync('bookingList') || [];
-								bookings = bookings.filter(b => b.id !== item.id); // 过滤掉要删除的
-								uni.setStorageSync('bookingList', bookings);
+// #ifdef H5
+import CustomTabbar from '@/components/custom-tabbar/custom-tabbar.vue'
+// #endif
+export default {
+  // #ifdef H5
+  components:{CustomTabbar},
+  // #endif
+  data(){
+    return {
+      count:{parking:0,scenic:0,restaurant:0},
+      recentList:[]
+    }
+  },
+  onShow(){
+    this.loadBookings()
+    /* #ifdef H5 */ uni.$emit('tabbar-update') /* #endif */
+  },
+  computed:{
+    todayTotal(){
+      const today=new Date().toLocaleDateString('zh-CN')
+      return this.recentList.filter(i=>!i.isCancel&&i.date.startsWith(today)).length
+    }
+  },
+  methods:{
+    loadBookings(){
+      const list=uni.getStorageSync('BOOKINGS')||[]
+      this.count = {
+        parking: list.filter(i => i.type === 'parking' && !i.isCancel).length,
+        scenic:  list.filter(i => i.type === 'scenic'  && !i.isCancel).length,
+        restaurant: list.filter(i => i.type === 'restaurant' && !i.isCancel).length
+      }
+      this.recentList = list.slice(0, 20)
+    },
+    goList(type){
+      uni.navigateTo({url: `/pages/booking-list/booking-list?type=${type}`});
+    },
+    cancelOne(item){
+      const list=uni.getStorageSync('BOOKINGS')||[]
+      const tar=list.find(i=>i.id===item.id)
+      if(tar){ tar.isCancel=true;uni.setStorageSync('BOOKINGS',list);this.loadBookings() }
+    },
+    clearAll(){
+      uni.showModal({
+        title:'提示',
+        content:'确定清空所有预约记录？',
+        success:(res)=>{
+          if(res.confirm){
+            uni.setStorageSync('BOOKINGS',[]);
+            this.loadBookings();
+          }
+        }
+      })
+    },
 
-								// 2. 更新页面数据
-								this.bookingList = bookings;
-
-								uni.showToast({
-									title: '预约已取消',
-									icon: 'success'
-								});
-							}
-						}
-					});
-				} else if (item.actionText === '查看详情') {
-					uni.navigateTo({
-						url: `/pages/booking/detail?id=${item.id}`
-					});
-				} else if (item.actionText === '重新预约') {
-					uni.navigateTo({
-						url: `/pages/booking/booking?parkId=${item.id}`
-					});
-				}
-			},
-			navToFavorites() {
-				uni.navigateTo({
-					url: '/pages/profile/favorites'
-				});
-			},
-			navToReviews() {
-				uni.navigateTo({
-					url: '/pages/profile/reviews'
-				});
-			},
-			navToSettings() {
-				uni.navigateTo({
-					url: '/pages/profile/settings'
-				});
-			}
-		}
-	}
+    /* 一键规划路线 */
+    planRoute() {
+      const valid = uni.getStorageSync('BOOKINGS').filter(i => !i.isCancel);
+      if (!valid.length) {
+        uni.showToast({ title: '暂无有效预约', icon: 'none' });
+        return;
+      }
+      // 只保留店铺名，去掉 (日期)
+      const content = valid.map(v => `「${v.shopName}」`).join('、');
+      const prompt = `我想去五道营胡同旅游，选择自驾过去，我预约了${content}，请帮我规划合理的路线和行程`;
+    
+      uni.setStorageSync('AI_PROMPT', prompt);
+      uni.switchTab({ url: '/pages/ai/ai' });
+    }
+  }
+}
 </script>
 
-<style scoped>
-	.container {
-		min-height: 100vh;
-		background: #f5f5f5;
-		padding: 40rpx;
-		/* #ifdef H5 */
-		padding-bottom: calc(40rpx + 120rpx);
-		/* #endif */
-	}
-
-	.content {
-		display: flex;
-		flex-direction: column;
-	}
-
-	/* 用户信息 */
-	.user-info {
-		display: flex;
-		align-items: center;
-		padding: 30rpx;
-		background-color: #fff;
-		border-radius: 12rpx;
-		margin-bottom: 20rpx;
-	}
-
-	.avatar {
-		width: 120rpx;
-		height: 120rpx;
-		border-radius: 60rpx;
-		margin-right: 30rpx;
-	}
-
-	.user-details {
-		flex: 1;
-	}
-
-	.nickname {
-		font-size: 36rpx;
-		font-weight: bold;
-		color: #333;
-	}
-
-	.phone {
-		font-size: 26rpx;
-		color: #999;
-		margin-top: 10rpx;
-	}
-
-	.vip-tag {
-		background-color: #ffd700;
-		color: #333;
-		padding: 10rpx 20rpx;
-		border-radius: 20rpx;
-		font-size: 24rpx;
-	}
-
-	/* 信息卡片 */
-	.info-card {
-		display: flex;
-		justify-content: space-around;
-		background-color: #fff;
-		padding: 30rpx 0;
-		border-radius: 12rpx;
-		margin-bottom: 20rpx;
-	}
-
-	.info-item {
-		text-align: center;
-	}
-
-	.label {
-		font-size: 24rpx;
-		color: #999;
-	}
-
-	.value {
-		font-size: 32rpx;
-		font-weight: bold;
-		color: #333;
-		margin-top: 10rpx;
-	}
-
-	/* 预约标题 */
-	.section-title {
-		font-size: 32rpx;
-		font-weight: bold;
-		color: #333;
-		padding: 20rpx 0;
-	}
-
-	/* 预约列表 */
-	.booking-list {
-		background-color: #fff;
-		border-radius: 12rpx;
-		margin-bottom: 20rpx;
-	}
-
-	.booking-item {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 30rpx;
-		border-bottom: 1px solid #eee;
-	}
-
-	.park-name {
-		font-size: 32rpx;
-		font-weight: bold;
-		color: #333;
-	}
-
-	.booking-time,
-	.duration {
-		font-size: 26rpx;
-		color: #999;
-		margin-top: 10rpx;
-	}
-
-	.status-tag {
-		padding: 10rpx 20rpx;
-		border-radius: 20rpx;
-		font-size: 24rpx;
-		margin-bottom: 20rpx;
-	}
-
-	.status-tag.pending {
-		background-color: #4caf50;
-		color: #fff;
-	}
-
-	.status-tag.completed {
-		background-color: #2196f3;
-		color: #fff;
-	}
-
-	.status-tag.cancelled {
-		background-color: #f44336;
-		color: #fff;
-	}
-
-	.action-btn {
-		background-color: #007aff;
-		color: #fff;
-		border: none;
-		border-radius: 8rpx;
-		padding: 12rpx 24rpx;
-		font-size: 26rpx;
-	}
-
-	/* 功能入口 */
-	.function-list {
-		display: flex;
-		justify-content: space-around;
-		background-color: #fff;
-		padding: 30rpx 0;
-		border-radius: 12rpx;
-	}
-
-	.function-item {
-		text-align: center;
-	}
-
-	.func-icon {
-		width: 60rpx;
-		height: 60rpx;
-	}
-
-	.func-text {
-		font-size: 26rpx;
-		color: #333;
-		margin-top: 10rpx;
-	}
+<style lang="scss" scoped>
+$pagePad:32rpx;
+$radius:24rpx;
+$shadow:0 8rpx 24rpx rgba(102,126,234,.15);
+	.allcontainer{
+			height: 100%;
+			width: 100%;
+			background-size: 100% 100%;
+			background-image: url('/static/ocean.jpg');   /* 路径换成你的 */
+		}
+.page{max-width: 700px;
+		margin: 0 auto;
+	min-height:100vh;background:#f4f6fc;padding:$pagePad;padding-bottom:calc(120rpx + 40rpx + env(safe-area-inset-bottom));}
+/* 顶部卡片 */
+.top-card{
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;border-radius:$radius;padding:40rpx 32rpx;margin-bottom:40rpx;text-align:center;box-shadow:$shadow;
+  .tc-tit{font-size:28rpx;opacity:.9;}
+  .tc-num{font-size:72rpx;font-weight:600;margin:12rpx 0;}
+  .tc-txt{font-size:26rpx;opacity:.8;}
+}
+/* 三大入口 */
+.grid{display:flex;justify-content:space-between;margin-bottom:40rpx;
+  .item{flex:1;background:#fff;border-radius:$radius;padding:40rpx 20rpx;text-align:center;margin:0 8rpx;position:relative;box-shadow:0 4rpx 16rpx rgba(0,0,0,.05);transition:transform .2s;
+    &:active{transform:scale(.96);}
+    .item-icon{font-size:48rpx;margin-bottom:16rpx;}
+    .item-name{font-size:28rpx;color:#2c3e50;}
+    .item-badge{position:absolute;right:20rpx;top:20rpx;background:#f5576c;color:#fff;font-size:22rpx;padding:4rpx 12rpx;border-radius:50%;}
+  }
+}
+/* 最近预约 */
+.recent-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20rpx;
+  .recent-tit{font-size:32rpx;font-weight:600;color:#2c3e50;}
+  .bar-right{display:flex;gap:20rpx;align-items:center;}
+  .plan-btn{
+    font-size:26rpx;color:#fff;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:8rpx 16rpx;border-radius:20rpx;
+  }
+  .clear{font-size:26rpx;color:#667eea;}
+}
+.recent-list{background:#fff;border-radius:$radius;padding:0 24rpx;box-shadow:0 4rpx 16rpx rgba(0,0,0,.05);
+  .recent-item{display:flex;justify-content:space-between;align-items:center;padding:28rpx 0;border-bottom:1px solid #f0f0f0;
+    &:last-child{border-bottom:none;}
+    .ri-left{flex:1;margin-right:20rpx;
+      .ri-name{font-size:30rpx;color:#2c3e50;margin-bottom:8rpx;}
+      .ri-time{font-size:24rpx;color:#95a5a6;}
+    }
+    .ri-right{display:flex;align-items:center;gap:16rpx;
+      .ri-status{font-size:24rpx;padding:4rpx 10rpx;border-radius:8rpx;
+        &.ok{background:#e8f5e9;color:#43a047;}
+        &.cancel{background:#ffebee;color:#e53935;}
+      }
+      .ri-cancel{font-size:24rpx;color:#667eea;}
+    }
+  }
+}
+.empty{text-align:center;padding:120rpx 0;color:#95a5a6;font-size:28rpx;}
 </style>

@@ -1,4 +1,5 @@
 <template>
+<view class="allcontainer">
   <view class="container">
     <!-- 搜索框 -->
     <view class="search-section">
@@ -72,6 +73,7 @@
     <custom-tabbar></custom-tabbar>
     <!-- #endif -->
   </view>
+</view>
 </template>
 
 <script>
@@ -170,7 +172,63 @@ export default {
           price: '¥20-40',
           tag: '轻食',
           image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800'
-        }
+        },
+		{
+		  name: '野馄饨·夜酒',
+		  intro: '晚上 8 点才开门的“深夜食堂”，鸡汤馄饨+自酿米酒，胡同口的小黄灯亮了 15 年。',
+		  price: '¥18-35',
+		  tag: '夜宵',
+		  image: 'https://images.unsplash.com/photo-1528732263441-1482b1f1a845?w=800'
+		},
+		{
+		  name: '柿子树法甜',
+		  intro: '老四合院里吃法式甜品，主厨师从 Pierre Hermé，柿子蒙布朗是秋季限定。',
+		  price: '¥68-120',
+		  tag: '甜品',
+		  image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?w=800'
+		},
+		{
+		  name: '巷尾咖喱',
+		  intro: '日本人开的微辣咖喱专门店，每日只卖 80 份，加料芝士要抢。',
+		  price: '¥42-68',
+		  tag: '日式',
+		  image: 'https://images.unsplash.com/photo-1585937421612-70a05835626b?w=800'
+		},
+		{
+		  name: '糖渍山楂',
+		  intro: '老北京炒红果+创意冰粉，山楂每天手工去核，酸甜解腻。',
+		  price: '¥12-22',
+		  tag: '小吃',
+		  image: 'https://images.unsplash.com/photo-1599599810694-b5b37307298b?w=800'
+		},
+		{
+		  name: 'Planet 轻食星球',
+		  intro: '健身党福音：每道菜标卡路里，藜麦饭+低温鸡胸，酱热量也写出来。',
+		  price: '¥38-65',
+		  tag: '轻食',
+		  image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800'
+		},
+		{
+		  name: '串府·小腰精',
+		  intro: '主打“小腰子”烤串，羊腰提前用牛奶泡，不腥不腻，夜宵王。',
+		  price: '¥3-10/串',
+		  tag: '烧烤',
+		  image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800'
+		},
+		{
+		  name: '妈妈手馍馍',
+		  intro: '陕西人开的纯手工馍馍店，现烙白吉馍+腊汁肉，10 元一套管饱。',
+		  price: '¥10-25',
+		  tag: '西北',
+		  image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800'
+		},
+		{
+		  name: '茶泡同学',
+		  intro: '把“茶+奶盖”做成实验课，自己倒氮气茶，看云雾翻涌，中二又出片。',
+		  price: '¥22-40',
+		  tag: '茶饮',
+		  image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800'
+		}
       ],
       bookedSet: new Set()
     }
@@ -213,7 +271,15 @@ export default {
 
 <style scoped>
 /* 整体背景 */
+	.allcontainer{
+			height: 100%;
+			width: 100%;
+			background-size: 100% 100%;
+			background-image: url('/static/ocean.jpg');   /* 路径换成你的 */
+		}
 .container {
+	max-width: 700px;
+	margin: 0 auto;
   min-height: 100vh;
   background: #f5f5f5;
   /* #ifdef H5 */
@@ -226,7 +292,7 @@ export default {
 
 /* 搜索区域 */
 .search-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #54e8ea 0%, #764ba2 100%);
   padding: 30rpx 40rpx 40rpx;
   position: sticky;
   top: 0;

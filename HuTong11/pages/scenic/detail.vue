@@ -155,6 +155,94 @@ export default {
           geography: '二楼取景处是五道营胡同的隐藏打卡地，位于胡同内某建筑的二楼平台。这里可以俯瞰整个北京城的景色，是拍摄城市全景的绝佳位置。站在这里，可以看到传统胡同与现代都市的完美融合，感受北京这座城市的独特魅力。这里适合拍照打卡，风景优美，是摄影师和游客的必访之地。',
           price: '免费（部分时段需预约）',
           parking: '永康胡同18号院，建议提前预约。'
+        },
+      'Rainbow 彩虹楼梯': {
+          name: 'Rainbow 彩虹楼梯',
+          images: [
+            'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800',
+            'https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=800'
+          ],
+          intro: '胡同里藏着的 7 色渐变楼梯，从上往下拍腿长 2 米，晴天 10:00-14:00 光影最绝。',
+          geography: '藏在北锣鼓巷支巷的彩虹楼梯，由附近美院学生自发涂鸦完成。7 色渐变从薄荷绿到蜜桃粉，每一步都是马卡龙。因为巷子窄，阳光直射时形成天然“影棚光”，手机原片就能直出发圈。',
+          price: '免费',
+          parking: '北锣鼓巷 45 号旁（地铁北锣 A 口步行 3 分钟）'
+        },
+        '银河汽水实验室': {
+          name: '银河汽水实验室',
+          images: [
+            'https://images.unsplash.com/photo-1556909114-75a47b5a7f5f?w=800',
+            'https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=800'
+          ],
+          intro: '自制“星系气泡水”，把 edible glitter 灌进汽水里，关灯瞬间星河爆炸，超治愈。',
+          geography: '帝都首家“可食用银河”主题实验室，利用食品级珠光粉与二氧化碳分层，制造出“星云翻滚”的视觉。店内每天只开放 30 个体验名额，调好的汽水在黑暗中呈现蓝紫渐变，号称“喝下一口银河”。',
+          price: '人均 28-48 元',
+          parking: '交道口南大街 88 号（地铁张自忠路站 B 口步行 5 分钟）'
+        },
+        '时光打字机咖啡馆': {
+          name: '时光打字机咖啡馆',
+          images: [
+            'https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=800',
+            'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800'
+          ],
+          intro: '店里摆着 20 台 1930s 打字机，可敲一张“旧时代情书”当明信片，文艺值 +100。',
+          geography: '咖啡馆收藏了 20 台 1930-1950 年欧美古董打字机，每台均可正常工作。客人可任选一台，用店内提供的亚麻信纸敲一封 140 字以内的“情书”，盖上火漆章，由店家 7 天后寄出。因为纸张做旧，墨迹带一点脱色，完美复刻“慢时代”浪漫。',
+          price: '人均 35-65 元',
+          parking: '方家胡同 12 号（地铁安定门站 B 口步行 6 分钟）'
+        },
+        '月亮邮筒': {
+          name: '月亮邮筒',
+          images: [
+            'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800',
+            'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800'
+          ],
+          intro: '巨型银色月牙形邮筒，夜里内置灯自动亮起，把明信片投进去 7 天后会收到“来自月亮的回信”。',
+          geography: '由独立插画师团队打造的公共艺术装置，月牙本体用 3D 打印航空铝，表面做磨砂银处理，内置 2700K 暖光感应灯。投递的明信片会统一盖上“月面”纪念戳，并由志愿者在 7 天后手写回信寄还，形成“地月往返”仪式感。',
+          price: '免费（明信片 10 元/张可选）',
+          parking: '国子监街 40 号门口（地铁雍和宫站 F 口步行 3 分钟）'
+        },
+        '像素胡同': {
+          name: '像素胡同',
+          images: [
+            'https://images.unsplash.com/photo-1558221639-130a5f44e3f4?w=800',
+            'https://images.unsplash.com/photo-1520637836862-4d197d17c93a?w=800'
+          ],
+          intro: '整条巷子地面贴满 8-bit 马赛克，踩在上面像跳“马里奥”，无人机俯拍效果炸裂。',
+          geography: '地面采用防滑环氧地坪漆，手工绘制 30×30 cm 的 8-bit 像素格，共 12 种经典游戏角色隐藏其中（吃豆人、马里奥、星星等）。巷子仅 1.8 米宽，手机垂直俯拍即可得到“满屏像素”效果，是游戏爱好者的隐藏打卡地。',
+          price: '免费',
+          parking: '柴棒胡同 3-9 号（地铁南锣鼓巷站 E 口步行 5 分钟）'
+        },
+        '风铃长廊': {
+          name: '风铃长廊',
+          images: [
+            'https://images.unsplash.com/photo-1478827539354-8eb3f729c3a7?w=800',
+            'https://images.unsplash.com/photo-1520637836862-4d197d17c93a?w=800'
+          ],
+          intro: '百米长廊挂 3000+ 只手工风铃，四季风向不同铃声也不同，闭眼拍 vlog 自带 BGM。',
+          geography: '长廊为传统木结构，顶部悬挂 3000+ 只手绘玻璃风铃，材质分铜/竹/玻璃三种，对应高中低三频。春季东南风多，铃声清脆；秋季西北风强劲，低音厚重。长廊尽头设录音区，可现场采样做 vlog BGM，号称“会唱歌的胡同”。',
+          price: '免费',
+          parking: '鼓楼东大街 190 号后院（地铁鼓楼大街站 G 口步行 4 分钟）'
+        },
+        '云朵制造机': {
+          name: '云朵制造机',
+          images: [
+            'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800',
+            'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800'
+          ],
+          intro: '门口机器 30 秒生成“可食用云朵”棉花糖，拍照完一口吃掉，零卡代糖不怕胖。',
+          geography: '店内主打“分子糖果”概念，使用零卡赤藓糖醇 + 植物色素，通过高速离心仪在 30 秒内生成“云朵”状棉花糖，口感比普通棉花糖更蓬松。提供 5 种口味：原味、草莓、抹茶、蝶豆花、黑可可，拍照 30 秒后开始萎缩，建议即拍即吃。',
+          price: '人均 18-30 元',
+          parking: '南锣鼓巷 128 号（地铁南锣鼓巷站 A 口步行 2 分钟）'
+        },
+        '镜面对称屋': {
+          name: '镜面对称屋',
+          images: [
+            'https://images.unsplash.com/photo-1520637836862-4d197d17c93a?w=800',
+            'https://images.unsplash.com/photo-1558221639-130a5f44e3f4?w=800'
+          ],
+          intro: '屋内 360° 镜面+对称灯光，站在中间仿佛掉进盗梦空间，手机广角一键出科幻大片。',
+          geography: '房间六面墙全部贴进口银镜，地面为高光黑玻，顶部隐藏式 LED 灯带形成无限反射。中央“悬浮”圆台仅供 1 人站立，手机开 0.5 倍广角，即可拍出“盗梦空间”式无限延伸画面。每次仅允许 3 人进入，避免镜面穿帮。',
+          price: '体验票 48 元/人（含 10 分钟拍摄时段）',
+          parking: '菊儿胡同 73 号地下一层（地铁南锣鼓巷站 D 口步行 4 分钟）'
         }
       }
     }
@@ -193,13 +281,21 @@ export default {
         this.hidePop()
         return
       }
-      list.unshift({
-        id: Date.now(),
-        shopName: this.scenicDetail.name,
-        mobile: this.mobile,
-        date: new Date().toLocaleString('zh-CN'),
-        isCancel: false
-      })
+      /* ===== 新增：统一字段 + 格式化时间 ===== */
+        const dateTime = new Date().toLocaleString('zh-CN', {
+          year: 'numeric', month: 'numeric', day: 'numeric',
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+          hour12: true
+        }).replace(/年|月/g, '/').replace(/日/, '');   // 2026/1/5 上午10:58:19
+      
+        list.unshift({
+          id: Date.now(),
+          type: 'scenic',                    // ① 类型
+          shopName: this.scenicDetail.name,  // ② 统一字段
+          date: dateTime,                    // ③ 带时间
+          mobile: this.mobile,
+          isCancel: false
+        });
       uni.setStorageSync('BOOKINGS', list)
       this.booked = true
       this.hidePop()
